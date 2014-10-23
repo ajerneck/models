@@ -1,54 +1,15 @@
-## ##' Run a generalized linear model on the formula.
-## ##'
-## ##' This wrapper function is required to get correct model objects
-## ##' when using lapply.
-## ##' @export
-## ##' @param formula a formula object specifying the model.
-## ##' @param ... additional arguments passed on to glm.
-## run.glm <- function(formula, ...) {
-##     z <- formula
-##     eval(substitute(glm(formula=z, ...)))
-## }
-## ##' Run a linear model on the formula.
-## ##'
-## ##' This wrapper function is required to get correct model objects
-## ##' when using lapply.
-## ##' @title run.lm
-## ##' @param formula a formula object specifying the model.
-## ##' @param ... additional arguments passed on to the lm.
-## ##' @return a model object
-## ##' @author Alexander Jerneck
-## ##' @export
-## run.lm <- function(formula, ...) {
-##     z <- formula
-##     eval(substitute(lm(formula=z, ...)))
-## }
-## ##' Run a negative binomial model on the formula.
-## ##'
-## ##' This wrapper function is required to get correct model objects
-## ##' when using lapply.
-## ##' @title run.nb
-## ##' @param formula a formula object specifying the model.
-## ##' @param ... additional arguments passed on to the nb.
-## ##' @return a model object
-## ##' @author Alexander Jerneck
-## ##' @export
-## run.nb <- function(formula, ...) {
-##     z <- formula
-##     eval(substitute(glm.nb(formula=z, ...)))
-## }
-
 ##' Run models while preserving proper model objects.
 ##'
 ##' Runs the model using func on the specification in formula. Returns
 ##' a model object that should be exactly like as if it was run in the
 ##' top environment.
-##' @title
+##' @title run
 ##' @param formula a formula object.
 ##' @param func a function that takes a formula object.
-##' @param ...
+##' @param ... the result of applying func to formula.
 ##' @return the results of running func on formula.
 ##' @author Alexader Jerneck
+##' @export
 run <- function(formula, func, ...) {
     z <- formula
     eval(substitute(func(formula=z, ...)))
